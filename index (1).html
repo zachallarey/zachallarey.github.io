@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zachary Miguel Allarey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#151a2c;        /* midnight sky */
+  --ink-2:#1f2540;      /* raised surface */
+  --silk:#ece8f3;       /* web silk / main text */
+  --silk-dim:#b8b3c9;   /* secondary text */
+  --lamp:#f2a541;       /* streetlamp amber */
+  --dusk:#8e7cc3;       /* dusk violet */
+  --line:rgba(236,232,243,.16);
+  --strand:rgba(236,232,243,.85);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --ink:#f3f0f7; --ink-2:#ffffff; --silk:#1c2036; --silk-dim:#4c5068;
+    --lamp:#b8650a; --dusk:#5f4ea3; --line:rgba(28,32,54,.14); --strand:rgba(28,32,54,.7);
+  }
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#151a2c; --ink-2:#1f2540; --silk:#ece8f3; --silk-dim:#b8b3c9;
+    --lamp:#f2a541; --dusk:#8e7cc3; --line:rgba(236,232,243,.16); --strand:rgba(236,232,243,.85);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#151a2c; --ink-2:#1f2540; --silk:#ece8f3; --silk-dim:#b8b3c9;
+  --lamp:#f2a541; --dusk:#8e7cc3; --line:rgba(236,232,243,.16); --strand:rgba(236,232,243,.85);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+body{
+  margin:0;background:var(--ink);color:var(--silk);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:1.0625rem;line-height:1.6;overflow-x:hidden;
+}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:3px;border-radius:4px}
+img{max-width:100%}
+
+/* decorative layers */
+#corners{position:fixed;inset:0;pointer-events:none;z-index:0}
+#webLayer{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.strand{fill:none;stroke:var(--strand);stroke-width:1.6;stroke-linecap:round}
+.splat line,.splat path{stroke:var(--strand);stroke-width:1;fill:none}
+
+/* nav */
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  padding:.85rem clamp(1rem,4vw,3rem);
+  background:color-mix(in srgb,var(--ink) 82%,transparent);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.mark{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.15rem;text-decoration:none}
+nav ul{list-style:none;display:flex;gap:.25rem;margin:0;padding:0;flex-wrap:wrap}
+nav a.navlink{display:inline-block;padding:.55rem .8rem;text-decoration:none;color:var(--silk-dim);border-radius:6px;min-height:44px;line-height:28px}
+nav a.navlink:hover{color:var(--silk)}
+.theme-btn{background:none;border:1px solid var(--line);color:var(--silk);border-radius:999px;min-width:44px;min-height:44px;cursor:pointer;font:inherit}
+
+main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+section{padding:clamp(3.5rem,9vw,6.5rem) 0}
+
+/* hero: name hangs from a strand */
+.hero{display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:start;padding-top:0}
+.hang{position:relative;padding-top:clamp(5rem,14vw,9rem);transform-origin:50% 0}
+.hang::before{content:"";position:absolute;top:0;left:2.2rem;width:1.5px;height:clamp(5rem,14vw,9rem);background:var(--strand)}
+.hang.swing{animation:swing 2.4s cubic-bezier(.3,.6,.3,1) both}
+@keyframes swing{0%{transform:translateY(-120%) rotate(0)}35%{transform:translateY(0) rotate(4deg)}55%{transform:rotate(-2.5deg)}75%{transform:rotate(1.2deg)}100%{transform:rotate(0)}}
+.hero h1{font-size:clamp(2.8rem,8.5vw,6rem);font-weight:800;letter-spacing:-.02em}
+.hero .lede{max-width:34rem;color:var(--silk-dim);font-size:1.15rem;margin:1.25rem 0 2rem}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 1.3rem;border-radius:999px;text-decoration:none;font-weight:600;border:1.5px solid var(--silk)}
+.btn.primary{background:var(--lamp);border-color:var(--lamp);color:#1a1405}
+.btn:hover{transform:translateY(-1px)}
+.photo{
+  margin-top:clamp(5rem,14vw,9rem);width:clamp(140px,22vw,220px);aspect-ratio:1;border-radius:50%;
+  border:1.5px dashed var(--silk-dim);display:grid;place-items:center;text-align:center;
+  color:var(--silk-dim);font-size:.85rem;padding:1rem;overflow:hidden;
+}
+.photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.tip{margin-top:2.5rem;color:var(--silk-dim);font-size:.9rem}
+
+h2{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:2rem}
+
+/* experience as a vertical strand with knots */
+.timeline{list-style:none;margin:0;padding:0 0 0 1.75rem;border-left:1.5px solid var(--strand);display:grid;gap:2.25rem}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:calc(-1.75rem - 6px);top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--lamp)}
+.timeline h3{font-size:1.35rem;font-weight:800}
+.meta{color:var(--silk-dim);font-size:.95rem;margin:.2rem 0 .6rem}
+.timeline p{margin:0;max-width:44rem}
+
+/* projects: cards hang on strands, get pulled in when opened */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;align-items:start}
+.card{
+  position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;
+  padding:1.5rem;transition:transform .5s cubic-bezier(.2,.9,.3,1.3);
+}
+.card::before{content:"";position:absolute;left:50%;top:-2.2rem;height:2.2rem;width:1.5px;background:var(--strand);opacity:.6}
+.projects{padding-top:2.2rem}
+.card.pulled{transform:translateY(-10px)}
+.card h3{font-size:1.4rem;font-weight:800;margin-bottom:.35rem}
+.stack{color:var(--dusk);font-weight:600;font-size:.9rem;margin:0 0 .9rem}
+.card p{margin:0 0 1rem}
+.toggle{
+  background:none;border:1.5px solid var(--line);color:var(--silk);font:inherit;font-weight:600;
+  min-height:44px;padding:0 1rem;border-radius:999px;cursor:pointer;
+}
+.toggle:hover{border-color:var(--silk)}
+.details{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.details>div{overflow:hidden}
+.card.open .details{grid-template-rows:1fr}
+.details ul{margin:1rem 0 1rem 1.1rem;padding:0}
+.details li{margin-bottom:.4rem}
+.repo{font-weight:600;color:var(--lamp)}
+
+/* contact */
+.contact p{max-width:36rem;color:var(--silk-dim)}
+.links{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+footer{position:relative;z-index:1;text-align:center;color:var(--silk-dim);font-size:.85rem;padding:2rem 1rem 3rem}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}
+  .photo{margin-top:0;order:-1}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hang.swing{animation:none}
+  .card,.details{transition:none}
+}
+</style>
+</head>
+<body>
+
+<svg id="corners" aria-hidden="true"></svg>
+<svg id="webLayer" aria-hidden="true"></svg>
+
+<nav>
+  <a class="mark" href="#top">Zach Allarey</a>
+  <ul>
+    <li><a class="navlink" href="#experience">Experience</a></li>
+    <li><a class="navlink" href="#projects">Projects</a></li>
+    <li><a class="navlink" href="#contact">Contact</a></li>
+    <li><button class="theme-btn" id="themeBtn" aria-label="Switch light or dark theme">◐</button></li>
+  </ul>
+</nav>
+
+<main id="top">
+  <section class="hero" aria-labelledby="name">
+    <div class="hang" id="hang">
+      <h1 id="name">Zachary Miguel Allarey</h1>
+      <p class="lede">Computer science student at the University of Florida, graduating May 2027. I build software that puts AI to work: document pipelines, vision models, and the systems around them.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">View resume</a>
+      </div>
+      <p class="tip">Click anywhere on the page to shoot a web.</p>
+    </div>
+    <div class="photo">
+      <!-- Replace this text with: <img src="your-photo.jpg" alt="Zach Allarey"> -->
+      Your photo here
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <ol class="timeline">
+      <li>
+        <h3>Engineering Intern, KCI Technologies</h3>
+        <p class="meta">May 2026 – Aug 2026, Greenville, SC</p>
+        <p>Built a FastAPI backend that runs OCR on PDF plans through Azure Document Intelligence, and combined the Qwen3-VL vision model with a rules engine to review engineering sheets, flag issues, and draft review letters.</p>
+      </li>
+      <li>
+        <h3>Research Intern, Loss Prevention Research Council</h3>
+        <p class="meta">Aug 2025 – Present, Gainesville, FL</p>
+        <p>Built a web app that connects to Gmail and uses AI to draft replies, plus a Python tool that combines monthly attendance reports and charts trends.</p>
+      </li>
+      <li>
+        <h3>AI Search Engine Analyst Intern, TELUS Digital</h3>
+        <p class="meta">Oct 2024 – Mar 2025, Remote</p>
+        <p>Rated AI-generated outputs for relevance, accuracy, and language quality to help improve search ranking systems.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projects" aria-labelledby="proj-h">
+    <h2 id="proj-h">Projects</h2>
+    <div class="projects">
+      <article class="card">
+        <h3>AI LoL Draft Assistant</h3>
+        <p class="stack">Python, FastAPI, React, LLM APIs</p>
+        <p>Recommends League of Legends champions during draft based on enemy and allied picks, then explains each pick in plain language.</p>
+        <button class="toggle" aria-expanded="false" aria-controls="d1">Pull in details</button>
+        <div class="details" id="d1"><div>
+          <ul>
+            <li>Collects ranked match data through the Riot Games API</li>
+            <li>Computes matchup, synergy, and team composition stats every patch</li>
+            <li>An LLM layer explains picks using only the computed stats</li>
+          </ul>
+          <a class="repo" href="https://github.com/zachallarey">View on GitHub</a>
+        </div></div>
+      </article>
+
+      <article class="card">
+        <h3>Challengers Tennis Predictor</h3>
+        <p class="stack">Python, Scikit-learn</p>
+        <p>Predicts the winners of professional tennis matches from real ATP data.</p>
+        <button class="toggle" aria-expanded="false" aria-controls="d2">Pull in details</button>
+        <div class="details" id="d2"><div>
+          <ul>
+            <li>Compared SVM, logistic regression, and random forest classifiers</li>
+            <li>Feature engineering and model tuning on ATP match datasets</li>
+          </ul>
+          <a class="repo" href="https://github.com/zachallarey">View on GitHub</a>
+        </div></div>
+      </article>
+
+      <article class="card">
+        <h3>CollegeEats</h3>
+        <p class="stack">React, JavaScript, Tailwind CSS</p>
+        <p>A calorie tracking web app for college students, powered by the USDA Food Database API.</p>
+        <button class="toggle" aria-expanded="false" aria-controls="d3">Pull in details</button>
+        <div class="details" id="d3"><div>
+          <ul>
+            <li>Led frontend development with React and Tailwind CSS</li>
+            <li>Built responsive dashboards and sign-in flows</li>
+          </ul>
+          <a class="repo" href="https://github.com/zachallarey">View on GitHub</a>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Get in touch</h2>
+    <p>I'm looking for new grad roles in applied AI and software engineering starting in 2027.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:zachallarey@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/zachary-miguel-allarey-68380b316/">LinkedIn</a>
+      <a class="btn" href="https://github.com/zachallarey">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>Built by Zach Allarey</footer>
+
+<script>
+(function(){
+  const NS = "http://www.w3.org/2000/svg";
+  const layer = document.getElementById("webLayer");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Theme toggle */
+  const root = document.documentElement;
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const dark = getComputedStyle(root).getPropertyValue("--ink").trim().toLowerCase() === "#151a2c";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+  });
+
+  /* Corner webs (decorative) */
+  function cornerWeb(svg, cx, cy, startAngle, radius){
+    const g = document.createElementNS(NS, "g");
+    g.style.stroke = "var(--line)";
+    g.style.fill = "none";
+    const spokes = 7, rings = 6, pts = [];
+    for (let i = 0; i < spokes; i++){
+      const a = startAngle + (Math.PI / 2) * (i / (spokes - 1));
+      const x = cx + Math.cos(a) * radius, y = cy + Math.sin(a) * radius;
+      const l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", cx); l.setAttribute("y1", cy); l.setAttribute("x2", x); l.setAttribute("y2", y);
+      g.appendChild(l); pts.push(a);
+    }
+    for (let r = 1; r <= rings; r++){
+      const rr = radius * r / rings;
+      let d = "";
+      pts.forEach((a, i) => {
+        const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr;
+        if (i === 0) d += `M${x},${y}`;
+        else {
+          const pa = pts[i - 1], ma = (a + pa) / 2, sag = rr * 0.88;
+          d += ` Q${cx + Math.cos(ma) * sag},${cy + Math.sin(ma) * sag} ${x},${y}`;
+        }
+      });
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("d", d); g.appendChild(p);
+    }
+    svg.appendChild(g);
+  }
+  function drawCorners(){
+    const svg = document.getElementById("corners");
+    const w = window.innerWidth, h = window.innerHeight;
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.setAttribute("width", w); svg.setAttribute("height", h);
+    svg.innerHTML = "";
+    const r = Math.min(260, Math.max(140, w * 0.22));
+    cornerWeb(svg, 0, 0, 0, r);
+    cornerWeb(svg, w, h, Math.PI, r * 0.8);
+  }
+  drawCorners();
+  window.addEventListener("resize", drawCorners);
+
+  /* Shooting a web strand */
+  function sizeLayer(){
+    layer.setAttribute("viewBox", `0 0 ${window.innerWidth} ${window.innerHeight}`);
+  }
+  sizeLayer(); window.addEventListener("resize", sizeLayer);
+
+  function splat(x, y){
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "splat");
+    const n = 8, R = 18;
+    let ring = "";
+    for (let i = 0; i < n; i++){
+      const a = (Math.PI * 2 * i) / n + Math.random() * 0.3;
+      const len = R * (0.7 + Math.random() * 0.5);
+      const l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", x); l.setAttribute("y1", y);
+      l.setAttribute("x2", x + Math.cos(a) * len); l.setAttribute("y2", y + Math.sin(a) * len);
+      g.appendChild(l);
+      const rx = x + Math.cos(a) * len * 0.55, ry = y + Math.sin(a) * len * 0.55;
+      ring += (i === 0 ? "M" : " L") + rx + "," + ry;
+    }
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", ring + " Z"); g.appendChild(p);
+    layer.appendChild(g);
+    return g;
+  }
+
+  function shootWeb(x1, y1, x2, y2, onHit){
+    if (reduce){ onHit && onHit(); return; }
+    const path = document.createElementNS(NS, "path");
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 + Math.min(60, Math.abs(x2 - x1) * 0.12);
+    path.setAttribute("d", `M${x1},${y1} Q${mx},${my} ${x2},${y2}`);
+    path.setAttribute("class", "strand");
+    layer.appendChild(path);
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.animate([{strokeDashoffset: len}, {strokeDashoffset: 0}], {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards"})
+      .onfinish = () => {
+        const s = splat(x2, y2);
+        onHit && onHit();
+        // strand snaps taut, then fades
+        path.animate([{d: `path("M${x1},${y1} Q${mx},${my} ${x2},${y2}")`}, {d: `path("M${x1},${y1} Q${mx},${(y1 + y2) / 2} ${x2},${y2}")`}], {duration: 180, fill: "forwards"});
+        const fade = [{opacity: 1}, {opacity: 0}];
+        setTimeout(() => {
+          path.animate(fade, {duration: 500, fill: "forwards"}).onfinish = () => path.remove();
+          s.animate(fade, {duration: 700, fill: "forwards"}).onfinish = () => s.remove();
+        }, 700);
+      };
+  }
+
+  /* Click anywhere on empty space: web shoots from the nearest top corner */
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("a, button, input, label, summary")) return;
+    const fromX = e.clientX < window.innerWidth / 2 ? 0 : window.innerWidth;
+    shootWeb(fromX, 0, e.clientX, e.clientY);
+  });
+
+  /* Nav links: web zips to the section heading, then scrolls there */
+  document.querySelectorAll("a.navlink, a.btn[href^='#']").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const target = document.querySelector(a.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      const r = a.getBoundingClientRect();
+      const x = r.left + r.width / 2, y = r.bottom;
+      shootWeb(x, y, x + (Math.random() - 0.5) * 80, window.innerHeight - 10, () => {
+        target.scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+        history.replaceState(null, "", a.getAttribute("href"));
+      });
+    });
+  });
+
+  /* Project cards: a web pulls the card in, then its details open */
+  document.querySelectorAll(".card .toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".card");
+      const opening = !card.classList.contains("open");
+      const finish = () => {
+        card.classList.toggle("open", opening);
+        btn.setAttribute("aria-expanded", String(opening));
+        btn.textContent = opening ? "Let go" : "Pull in details";
+      };
+      if (opening){
+        const r = card.getBoundingClientRect();
+        const x = r.left + r.width / 2;
+        card.classList.add("pulled");
+        shootWeb(x, 0, x, r.top + 8, () => {
+          card.animate([{transform: "translateY(-10px)"}, {transform: "translateY(-26px)"}, {transform: "translateY(-10px)"}], {duration: 380, easing: "ease-out"});
+          finish();
+        });
+      } else {
+        card.classList.remove("pulled");
+        finish();
+      }
+    });
+  });
+
+  /* One orchestrated moment on load: the name drops in on its strand */
+  if (!reduce) document.getElementById("hang").classList.add("swing");
+})();
+</script>
+</body>
+</html>
